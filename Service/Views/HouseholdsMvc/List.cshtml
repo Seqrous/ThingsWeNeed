@@ -1,0 +1,56 @@
+﻿@model ThingsWeNeed.Service.ViewModels.HouseholdListViewModel
+@Scripts.Render("~/Scripts/householdScripts.js")
+@Scripts.Render("~/Scripts/householdListScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        
+
+        
+        <div class="input-group">
+            <input type="text" class="form-control" id="householdIdTextBox" placeholder="Household Id to join">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-success" onClick="joinHouseholdClicked()">Join</button>
+            </span>
+        </div>
+        <br />
+
+        <table class="table table-bordered table-hover" id="householdTable">
+            <thead>
+                <tr>
+                    <th name="#">Id</th>
+                    <th name="Name">Name</td>
+                    <th name="Address1">Address 1</td>
+                    <th name="Address2">Address 2</th>
+                    <th name="City">City</th>
+                    <th name="Postcode">Postcode</th>
+                    <th name="Country">Country</th>
+                    <th name="Actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var household in Model.Households)
+                {
+                    <tr>
+                        <td>@household.HouseholdId</td>
+                        <td>@household.Name</td>
+                        <td>@household.Address.Address1</td>
+                        <td>@household.Address.Address2</td>
+                        <td>@household.Address.City</td>
+                        <td>@household.Address.PostCode</td>
+                        <td>@household.Address.Country</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn_household_update" onclick="window.location='/Households/@household.HouseholdId'">Update</button>
+                                <button type="button" class="btn btn-default btn_household_leave" onclick="leaveHouseholdClicked(@household.HouseholdId)">Leave</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="/Households/create">Create new</a>
+    </div>
+</div>
+
+

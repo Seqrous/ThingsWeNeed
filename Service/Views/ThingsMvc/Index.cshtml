@@ -1,0 +1,241 @@
+﻿@model ThingsWeNeed.Service.ViewModels.MultiViewModel 
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-3">
+                <form id="householdForm" action="/api/Households" method="POST">
+                    <h3>Households</h3>
+                    <input type="text" name="Name" placeholder="Name" /><br />
+                    <input type='text' name='Address1' placeholder='Address line 1' /><br />
+                    <input type='text' name='Address2' placeholder='Address line 2' /><br />
+                    <input type='text' name='City' placeholder='City' /><br />
+                    <input type='text' name='Postcode' placeholder='Postcode' /><br />
+                    <input type='text' name='Country' placeholder='Country' /><br />
+                    <input type="button" value="Create" onclick="householdSubmit()" />
+                </form>
+            </div>
+            <div class="col-sm-9">
+                <table class="table table-bordered table-hover" id="householdTable">
+                    <thead>
+                        <tr>
+                            <th name="Id">Id</th>
+                            <th name="Name">Name</td>
+                            <th name="Address1">Address 1</td>
+                            <th name="Address2">Address 2</th>
+                            <th name="City">City</th>
+                            <th name="Postcode">Postcode</th>
+                            <th name="Country">Country</th>
+                            <th name="Actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var household in Model.HouseholdList.Households)
+                        {
+                            <tr id="@household.HouseholdId">
+                                <td>@household.HouseholdId</td>
+                                <td>@household.Name</td>
+                                <td>@household.Address.Address1</td>
+                                <td>@household.Address.Address2</td>
+                                <td>@household.Address.City</td>
+                                <td>@household.Address.PostCode</td>
+                                <td>@household.Address.Country</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" onclick="householdUpdate()">Update</button>
+                                        <button type="button" class="btn btn-default" onClick="householdDelete()">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <script>
+            function householdUpdate() {
+                
+            }
+
+            function householdDelete() {
+                $(this).last
+            }
+
+            function householdSubmit() {
+                var fElems = $("#householdForm")[0].elements;
+
+                var Household = {
+                    Name: fElems.Name.value,
+                    Address: {
+                        Address1: fElems.Address1.value,
+                        Address2: fElems.Address2.value,
+                        City: fElems.City.value,
+                        Postcode: fElems.Postcode.value,
+                        Country: fElems.Country.value
+                    }
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Households',
+                    data: JSON.stringify(Household),
+                    contentType: "application/json",
+                    success: function (response) {
+                        var table = $("#householdTable")[0];
+                        var row = table.insertRow(1);
+
+                        var idCell = row.insertCell(0);
+                        var nameCell = row.insertCell(1);
+                        var address1Cell = row.insertCell(2);
+                        var address2Cell = row.insertCell(3);
+                        var cityCell = row.insertCell(4);
+                        var postcodeCell = row.insertCell(5);
+                        var countryCell = row.insertCell(6);
+
+                        idCell.innerHTML = response.HouseholdId;
+                        nameCell.innerHTML = response.Name;
+                        address1Cell.innerHTML = response.Address.Address1;
+                        address2Cell.innerHTML = response.Address.Address2;
+                        cityCell.innerHTML = response.Address.City;
+                        postcodeCell.innerHTML = response.Address.PostCode;
+                        countryCell.innerHTML = response.Address.Country;
+                    },
+                    error: function (response) {
+                        alert("Error");
+                    }
+                });
+            }
+        </script>
+        <hr />
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <form id="thingForm">
+                    <h3>Things</h3>
+                    <input type='text' name='Name' placeholder='Name' /><br />
+                    <input type='text' name='Price' placeholder='Default Price' /><br />
+                    <input type='number' name='HouseholdId' placeholder='Household Id' /><br />
+                    <label>Needed </label><input type='checkbox' name='Needed' placeholder='Is this really needed?' /><br />
+                    <label>Show   </label><input type='checkbox' name='Show' placeholder='Should we show this?' /><br />
+                    <input type='button' value="Submit" onclick="thingSubmit()" /><br />
+                </form>
+            </div>
+
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+
+            </div>
+
+        </div>
+        <script>
+            function thingSubmit() {
+                var fElems = $("#thingForm")[0].elements;
+
+                var thing = {
+                    Name: fElems.Name.value,
+                    DefaultPrice: fElems.Price.value,
+                    HouseholdId: fElems.HouseholdId.value,
+                    Show: fElems.Show.value,
+                    Needed: fElems.Needed.value
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Things',
+                    data: JSON.stringify(thing),
+                    contentType: 'applctication/json',
+                    success: function (response) {
+                        alert("Success");
+                    },
+                    error: function (response) {
+                        alert("Error");
+                    }
+                });
+            }
+        </script>
+        <hr />
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <form id="userForm">
+                    <h3>Users</h3>
+                    <input type='text' name='Username' placeholder='Username' /><br />
+                    <input type='text' name='Password' placeholder='Password' /><br />
+                    <input type='text' name='ConfirmPassword' placeholder='Confirm Password' /><br />
+                    <input type='email' name='Email' placeholder='Email' /><br />
+                    <input type='button' value='Register' onClick='userRegister()' />
+                </form>
+            </div>
+        </div>
+        <script>
+            function userRegister() {
+                var fElems = $("#userForm")[0].elements;
+
+                var user = {
+                    Username: fElems.Username.value,
+                    Password: fElems.Password.value,
+                    ConfirmPassword: fElems.ConfirmPassword.value,
+                    Email: fElems.Email.value
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Users/Register',
+                    data: JSON.stringify(user),
+                    contentType: 'applctication/json',
+                    success: function (response) {
+                        alert("Success");
+                    },
+                    error: function (response) {
+                        alert("Error");
+                    }
+                });
+            }
+        </script>
+        <hr />
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <form id="purchaseForm" onsubmit="purchaseSubmit()">
+                    <h3>Purchases</h3>
+                </form>
+            </div>
+        </div>
+        <script>
+
+        </script>
+
+    </div>
+
+</div>

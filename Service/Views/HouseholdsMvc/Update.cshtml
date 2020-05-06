@@ -1,0 +1,18 @@
+@model ThingsWeNeed.Service.ViewModels.HouseholdUpdateViewModel
+@Scripts.Render("~/Scripts/householdScripts.js")
+@Scripts.Render("~/Scripts/householdUpdateScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        <form id="householdForm">
+            <h3>Update @Model.Household.Name</h3>
+            <input class="form-control" type="text" name="Name" placeholder="Name" required="required" value="@Model.Household.Name"/><br />
+            <input class="form-control" type='text' name='Address1' placeholder='Address line 1' value="@Model.Household.Address.Address1"/><br />
+            <input class="form-control" type='text' name='Address2' placeholder='Address line 2' value="@Model.Household.Address.Address2"/><br />
+            <input class="form-control" type='text' name='City' placeholder='City' value="@Model.Household.Address.City"/><br />
+            <input class="form-control" type='text' name='PostCode' placeholder='Postcode' value="@Model.Household.Address.PostCode"/><br />
+            <input class="form-control" type='text' name='Country' placeholder='Country' value="@Model.Household.Address.Country"/><br />
+            <input class="btn btn-success form-control" type="button" value="Update" onclick="householdUpdateSubmit()" />
+        </form>
+    </div>
+</div>

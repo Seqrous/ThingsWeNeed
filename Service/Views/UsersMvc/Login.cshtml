@@ -1,0 +1,14 @@
+@Scripts.Render("~/Scripts/userLoginScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>Login</h3>
+        <form id="loginForm">
+            <input class="form-control" type='text' name='Username' placeholder='Username' /><br />
+            <input class="form-control" type='password' name='Password' placeholder='Password' /><br />
+            <input class="form-control btn btn-success" type='button' value="Login" onclick="loginClicked()" />
+        </form>
+        <br />
+        <p>No account? <a href="/Users/register">Register here!</a></p>
+    </div>
+</div>

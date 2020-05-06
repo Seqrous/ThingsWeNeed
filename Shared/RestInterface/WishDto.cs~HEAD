@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ThingsWeNeed.Shared
+{
+    public class WishDto
+    {
+<<<<<<< HEAD:Shared/RestInterface/WishDto.cs
+=======
+        public UserLogic() {
+        
+        }
+
+        public ThingDto GetById(int id)
+        {
+            return null;
+        }
+
+
+>>>>>>> IDon'tKnow:Data/User/UserLogic.cs
+    }
+}

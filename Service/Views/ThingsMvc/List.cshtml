@@ -1,0 +1,54 @@
+﻿@model ThingsWeNeed.Service.ViewModels.ThingListViewModel
+@Scripts.Render("~/Scripts/thingListScripts.js")
+@Scripts.Render("~/Scripts/thingScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        <a href="/Things/create">Create new</a>
+        
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Needed</th>
+                    <th>Name</th>
+                    <th width="200">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var thing in Model.Things)
+                {
+                <tr id="@thing.ThingId">
+                    @{String Needed = null;
+                        if (thing.Needed == true)
+                        {
+                            Needed = "Needed";
+                        }
+                        else
+                        {
+                            Needed = "Not needed";
+                        }
+                    }
+                    <td>@Needed</td>
+                    <td>@thing.Name</td>
+                    <td>
+                        <span class="input-group price" style="display:none">
+                            <input type="text" class="form-control price-input" placeholder="Price">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" onclick="cancelButtonClicked(@thing.ThingId)">X</button>
+                            </span>
+                        </span>
+
+                        <span class="btn-group buy">
+                            <button type="button" class="btn btn-success" onClick="buyButtonClicked(@thing.ThingId)">Buy</button>
+                            <button type="button" class="btn btn-default" onClick="window.location = '/Things/@thing.ThingId'">Edit</button>
+                        </span>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        
+        <button type="button" class="btn btn-success" onclick="finishClicked()">Finish shopping</button>
+
+    </div>
+</div>

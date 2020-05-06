@@ -1,0 +1,20 @@
+@Scripts.Render("~/Scripts/thingScripts.js")
+@Scripts.Render("~/Scripts/thingCreateScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>Create new thing</h3>
+        <form id="thingForm">
+            <input type='text' name="Name" placeholder="Thing's name" class="form-control" /><br />
+            <input type='text' name='DefaultPrice' placeholder='Default Price' class="form-control" /><br />
+            <div class="checkbox">
+                <label>
+                    <input name="Needed" type="checkbox">
+                    Needed
+                </label>
+            </div>
+            <input type='text' name='HouseholdId' placeholder='Household id' class='form-control'/><br />
+            <button type="button" class="btn btn-default" onclick="thingCreateSubmit()">Submit</button>
+        </form>        
+    </div>
+</div>

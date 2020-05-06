@@ -1,0 +1,19 @@
+@model ThingsWeNeed.Service.ViewModels.HouseholdCreateViewModel
+@Scripts.Render("~/Scripts/householdScripts.js")
+@Scripts.Render("~/Scripts/householdCreateScripts.js")
+
+<div class="container">
+    <div class="jumbotron">
+        <form id="householdForm" action="/api/Households" method="POST">
+            <h3>Create New Household</h3>
+
+            <input class="form-control" type="text" name="Name" placeholder="Name" required="required" /><br />
+            <input class="form-control" type='text' name='Address1' placeholder='Address line 1' /><br />
+            <input class="form-control" type='text' name='Address2' placeholder='Address line 2' /><br />
+            <input class="form-control" type='text' name='City' placeholder='City' /><br />
+            <input class="form-control" type='text' name='PostCode' placeholder='Postcode' /><br />
+            <input class="form-control" type='text' name='Country' placeholder='Country' /><br />
+            <input class="btn btn-success form-control" type="button" value="Create" onclick="householdCreateSubmit()" />
+        </form>
+    </div>
+</div>

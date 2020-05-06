@@ -1,0 +1,40 @@
+﻿<Page x:Class="Desktop.ThingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ThingPage">
+
+    <Grid>
+        <DataGrid Name="myDataGrid" HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="772" Margin="10,10,0,0" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ThingId}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Default Price" Binding="{Binding DefaultPrice}" />
+                <DataGridCheckBoxColumn Header="Needed" Binding="{Binding Needed}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Household ID" Binding="{Binding HouseholdId}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <Button x:Name="updateBtn" Content="Update" Click="updateBtn_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="createBtn" Content="Create" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="78" Click="createBtn_Click" Height="20"/>
+        <Button x:Name="usersNavBtn" Content="Users Page" HorizontalAlignment="Left" Margin="581,389,0,0" VerticalAlignment="Top" Width="98" Click="usersNavBtn_Click" Height="20"/>
+        <Button x:Name="householdsNavBtn" Content="Households Page" HorizontalAlignment="Left" Margin="478,389,0,0" VerticalAlignment="Top" Width="98" Click="householdsNavBtn_Click" Height="20"/>
+        <Button x:Name="thingsNavBtn" Content="Things Page" HorizontalAlignment="Left" Margin="684,389,0,0" VerticalAlignment="Top" Width="98" Click="thingsNavBtn_Click" Height="20"/>
+     </Grid>
+</Page>

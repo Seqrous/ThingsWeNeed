@@ -1,0 +1,24 @@
+﻿@model ThingsWeNeed.Service.Controllers.Thing.ThingDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align: center">Details</h2>
+@Html.AntiForgeryToken()
+    
+<div class="form-horizontal" style="background-color: darkseagreen">
+    <h4 style="text-align: center; background-color: darkseagreen">@Model.Thing.Name</h4>
+    <hr />
+        
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

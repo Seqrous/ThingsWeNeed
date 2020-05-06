@@ -1,0 +1,20 @@
+@Scripts.Render("~/Scripts/thingScripts.js")
+@Scripts.Render("~/Scripts/thingUpdateScripts.js")
+@model ThingsWeNeed.Service.ViewModels.ThingUpdateViewModel
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>Update @Model.Thing.Name</h3>
+        <form id="thingForm">
+            <input type='text' name="Name" placeholder="Thing's name" class="form-control" value="@Model.Thing.Name"/><br />
+            <input type='text' name='DefaultPrice' placeholder='Default Price' class="form-control" value="@Model.Thing.DefaultPrice"/><br />
+            <div class="checkbox">
+                <label>
+                    <input name="Needed" type="checkbox">
+                    Needed
+                </label>
+            </div>
+            <button type="button" class="btn btn-default" onclick="thingUpdateSubmit()">Submit</button>
+        </form>        
+    </div>
+</div>

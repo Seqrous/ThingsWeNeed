@@ -1,0 +1,127 @@
+﻿
+
+
+<form id="householdForm" action="/api/Households" method="POST">
+    <h3>Households</h3>
+    <input type="text" name="Name" placeholder="Name" /><br />
+    <input type="button" value="Submit" onclick="householdSubmit()" />
+</form>
+
+<script>
+    function householdSubmit(form) {
+        var fElems = $("#householdForm")[0].elements;
+
+        var Household = {
+            Name: fElems.Name.value
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/Households',
+            data: JSON.stringify(Household),
+            contentType: "application/json",
+            success: function (response) {
+                alert("Success");
+            },
+            error: function (response) {
+                alert("Error");
+            }
+        });
+    }
+</script>
+<hr />
+
+
+
+
+
+<form id="thingForm">
+    <h3>Things</h3>
+    <input type='text' name='Name' placeholder='Name' /><br />
+    <input type='text' name='Price' placeholder='Default Price' /><br />
+    <input type='number' name='HouseholdId' placeholder='Household Id' /><br />
+    <input type='checkbox' name='Needed' placeholder='Is this really needed?' /><br />
+    <input type='checkbox' name='Show' placeholder='Should we show this?' /><br />
+    <input type='button' value="Submit" onclick="thingSubmit()" /><br />
+</form>
+
+<script>
+    function thingSubmit() {
+        var fElems = $("#thingForm").elements;
+
+        var thing = {
+            Name: fElems.Name.value,
+            DefaultPrice: fElems.Price.value,
+            HouseholdId: fElems.HouseholdId.value,
+            Show: fElems.Show.value,
+            Needed: fElems.Needed.value
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/Things',
+            data: JSON.Stringify(thing),
+            contentType: 'applctication/json',
+            success: function (response) {
+                alert("Success");
+            },
+            error: function (response) {
+                alert("Error");
+            }
+        });
+    }
+</script>
+<hr />
+
+
+
+
+<form id="userForm">
+    <h3>Users</h3>
+    <input type='text' name='Username' placeholder='Username' /><br />
+    <input type='text' name='Password' placeholder='Password' /><br />
+    <input type='text' name='ConfirmPassword' placeholder='Confirm Password' /><br />
+    <input type='email' name='Email' placeholder='Email' /><br />
+    <input type='button' onClick='userRegister()' value='Register' /><br />
+    <input type='button' value="Submit" onclick="thingSubmit()" /><br />
+</form>
+<script>
+    function userRegister() {
+        var fElems = $("#userForm").elements;
+
+        var user = {
+            Username: fElems.Username.value,
+            Password: fElems.Password.value,
+            ConfirmPassword: fElems.ConfirmPassword.value,
+            Email: fElems.Email.value
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/Users/Register',
+            data: JSON.Stringify(user),
+            contentType: 'applctication/json',
+            success: function (response) {
+                alert("Success");
+            },
+            error: function (response) {
+                alert("Error");
+            }
+        }); 
+    }
+</script>
+<hr />
+
+
+
+
+
+
+
+<form id="purchaseForm" onsubmit="purchaseSubmit()">
+    <h3>Purchases</h3>
+</form>
+
+<script>
+
+</script>
