@@ -1,7 +1,12 @@
 # ThingsWeNeed
 A 3rd semester project introducing us to web development.
 
-## Languages included, which we practices/learned along the way:
+### Disclaimer ### 
+The project's github management was a mess.
+While developing the project, we were the only people 
+who understood how it worked. Now I don't think anybody does.
+
+## Languages included, which we practiced/learned along the way:
 - C#,
 - JS, 
 - HTML,
